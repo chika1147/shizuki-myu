@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫月ミュウ / Shizuki Myu — Official Site</title>
+<meta name="description" content="紫の魔法と夢を届けるVTuber・紫月ミュウの公式サイト。魔法学校出身の元気な歌い手。">
+<meta name="keywords" content="紫月ミュウ, Shizuki Myu, VTuber, 魔法, ファンタジー, 公式サイト">
+<meta name="author" content="Lupinus (chika1147)">
+<meta property="og:title" content="紫月ミュウ / Shizuki Myu — Official Site">
+<meta property="og:description" content="紫の魔法と夢を届けるVTuber・紫月ミュウの公式サイト。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chika1147.github.io/shizuki-myu/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & ROOT ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-bg:        #0d0a1a;
+  --color-surface:   #150f2a;
+  --color-border:    rgba(196,181,253,0.15);
+  --color-primary:   #a855f7;
+  --color-accent:    #e879f9;
+  --color-gold:      #f59e0b;
+  --color-glow:      rgba(168,85,247,0.6);
+  --color-pink:      #f472b6;
+  --color-lavender:  #c4b5fd;
+  --color-text-main: rgba(245,240,255,0.95);
+  --color-text-sub:  rgba(196,181,253,0.8);
+  --color-text-muted:rgba(139,92,246,0.5);
+  --gradient-hero:
+    radial-gradient(ellipse at 20% 50%, rgba(168,85,247,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(232,121,249,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(99,102,241,0.2) 0%, transparent 60%);
+  --gradient-accent: linear-gradient(135deg, #a855f7, #e879f9, #f472b6);
+  --gradient-gold:   linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+  --font-display:    'Cinzel', serif;
+  --font-magic:      'Orbitron', sans-serif;
+  --font-body:       'Noto Sans JP', sans-serif;
+  --font-round:      'M PLUS Rounded 1c', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ========== CANVAS ========== */
+#magic-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ========== NAV ========== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(13,10,26,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px var(--color-glow));
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--color-text-sub);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  font-family: var(--font-magic);
+}
+.nav-links a:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px var(--color-glow);
+}
+
+/* ========== SECTION BASE ========== */
+section {
+  position: relative;
+  z-index: 10;
+  padding: 8rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  font-family: var(--font-magic);
+  font-size: 0.65rem;
+  letter-spacing: 6px;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px var(--color-glow));
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-family: var(--font-round);
+  color: var(--color-text-sub);
+  font-size: 1rem;
+}
+
+.section-line {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-accent), transparent);
+  margin: 1.5rem auto 0;
+  box-shadow: 0 0 10px var(--color-glow);
+}
+
+/* ========== HERO ========== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--gradient-hero), var(--color-bg);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.hero-text {
+  animation: fadeInLeft 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  opacity: 0;
+}
+
+.hero-magic-label {
+  font-family: var(--font-magic);
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.hero-magic-label::before {
+  content: '✦';
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.hero-name-ja {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px var(--color-glow));
+  margin-bottom: 0.3rem;
+}
+
+.hero-name-en {
+  font-family: var(--font-magic);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: var(--color-lavender);
+  letter-spacing: 5px;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.hero-catchcopy {
+  font-family: var(--font-round);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--color-text-sub);
+  line-height: 1.9;
+  margin-bottom: 2.5rem;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--gradient-accent);
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-magic);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--color-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 40px var(--color-glow), 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-magic);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(168,85,247,0.1);
+  box-shadow: 0 0 20px var(--color-glow);
+}
+
+.hero-image-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: fadeInRight 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+  opacity: 0;
+}
+
+.hero-char {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 3/4;
+  position: relative;
+  border: none;
+  background: transparent;
+}
+
+.hero-char img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 0 30px rgba(168,85,247,0.5));
+}
+
+.magic-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(168,85,247,0.3);
+  animation: spin 20s linear infinite;
+}
+.magic-ring-1 {
+  width: 110%; height: 110%;
+  top: -5%; left: -5%;
+  border-style: dashed;
+}
+.magic-ring-2 {
+  width: 120%; height: 120%;
+  top: -10%; left: -10%;
+  animation-direction: reverse;
+  animation-duration: 30s;
+  border-color: rgba(232,121,249,0.2);
+}
+
+.hero-char-placeholder {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 4px;
+  border: none;
+}
+
+/* ========== ABOUT ========== */
+#about {
+  background: radial-gradient(ellipse at 70% 50%, rgba(168,85,247,0.1) 0%, transparent 60%), var(--color-bg);
+}
+
+.about-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-magic-card {
+  background: rgba(168,85,247,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-magic-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+.about-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+  display: block;
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  color: var(--color-text-sub);
+  line-height: 2;
+  font-size: 0.95rem;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.about-tag {
+  padding: 0.3rem 0.8rem;
+  background: rgba(168,85,247,0.15);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--color-lavender);
+  font-family: var(--font-round);
+}
+
+/* ========== PROFILE ========== */
+#profile {
+  background: var(--color-bg);
+}
+
+.profile-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.profile-card {
+  background: rgba(168,85,247,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.3rem;
+}
+
+.profile-name-en {
+  font-family: var(--font-magic);
+  font-size: 0.75rem;
+  color: var(--color-text-sub);
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.stat-item {
+  background: rgba(168,85,247,0.08);
+  border: 1px solid var(--color-border);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.stat-label {
+  font-family: var(--font-magic);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 0.3rem;
+}
+
+.stat-value {
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  font-family: var(--font-round);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.profile-block-title {
+  font-family: var(--font-magic);
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.profile-block-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-border), transparent);
+}
+
+.profile-text {
+  color: var(--color-text-sub);
+  line-height: 2;
+  font-size: 0.95rem;
+  font-family: var(--font-round);
+}
+
+/* ========== MAGIC ========== */
+#magic {
+  background: radial-gradient(ellipse at 30% 50%, rgba(232,121,249,0.1) 0%, transparent 60%), var(--color-bg);
+}
+
+.magic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.magic-card {
+  background: rgba(168,85,247,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.magic-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.magic-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-primary);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.3);
+}
+.magic-card:hover::before { opacity: 0.05; }
+
+.magic-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.magic-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-lavender);
+  margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.magic-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  font-family: var(--font-round);
+  position: relative;
+  z-index: 1;
+}
+
+.magic-level {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.level-star {
+  color: var(--color-gold);
+  font-size: 0.8rem;
+}
+
+/* ========== MUSIC ========== */
+#music {
+  background: var(--color-bg);
+}
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.music-card {
+  background: rgba(168,85,247,0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.music-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 30px rgba(168,85,247,0.2);
+}
+
+.music-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1a0a2e, #2d1b4e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.music-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  opacity: 0.1;
+}
+
+.music-info {
+  padding: 1rem;
+}
+
+.music-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--color-lavender);
+  margin-bottom: 0.3rem;
+}
+
+.music-genre {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-magic);
+  letter-spacing: 1px;
+}
+
+.music-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: rgba(168,85,247,0.2);
+  border-radius: 10px;
+  font-size: 0.65rem;
+  color: var(--color-lavender);
+  margin-top: 0.5rem;
+  font-family: var(--font-round);
+}
+
+/* ========== GALLERY ========== */
+#gallery {
+  background: radial-gradient(ellipse at 60% 40%, rgba(168,85,247,0.1) 0%, transparent 60%), var(--color-bg);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1a0a2e, #2d1b4e);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.gallery-item:hover {
+  transform: scale(1.05);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-glow);
+}
+.gallery-item::after {
+  content: '✦';
+  position: absolute;
+  font-size: 1rem;
+  color: var(--color-gold);
+  bottom: 0.5rem;
+  right: 0.5rem;
+  opacity: 0.5;
+}
+
+/* ========== SCHEDULE ========== */
+#schedule {
+  background: var(--color-bg);
+}
+
+.schedule-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-date {
+  text-align: center;
+  min-width: 70px;
+}
+
+.schedule-month {
+  font-family: var(--font-magic);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+}
+
+.schedule-day {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.schedule-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.schedule-title {
+  font-family: var(--font-round);
+  font-size: 1rem;
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+.schedule-time {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+  font-family: var(--font-magic);
+  letter-spacing: 1px;
+}
+
+.schedule-badge {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-family: var(--font-round);
+  width: fit-content;
+}
+.badge-live {
+  background: rgba(239,68,68,0.2);
+  border: 1px solid rgba(239,68,68,0.4);
+  color: #fca5a5;
+}
+.badge-collab {
+  background: rgba(168,85,247,0.2);
+  border: 1px solid var(--color-border);
+  color: var(--color-lavender);
+}
+.badge-music {
+  background: rgba(245,158,11,0.2);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: #fcd34d;
+}
+
+/* ========== GOODS ========== */
+#goods {
+  background: radial-gradient(ellipse at 40% 60%, rgba(232,121,249,0.1) 0%, transparent 60%), var(--color-bg);
+}
+
+.goods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.goods-card {
+  background: rgba(168,85,247,0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.goods-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.2);
+  border-color: var(--color-accent);
+}
+
+.goods-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #1a0a2e, #2d1b4e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.goods-info {
+  padding: 1.2rem;
+}
+
+.goods-name {
+  font-family: var(--font-round);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 0.3rem;
+}
+
+.goods-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.goods-btn {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  background: var(--gradient-accent);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--font-magic);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  transition: all 0.3s ease;
+}
+.goods-btn:hover {
+  box-shadow: 0 0 20px var(--color-glow);
+  transform: translateY(-2px);
+}
+
+/* ========== CONTACT ========== */
+#contact {
+  background: var(--color-bg);
+}
+
+.contact-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-text {
+  color: var(--color-text-sub);
+  font-family: var(--font-round);
+  line-height: 2;
+  margin-bottom: 3rem;
+  font-size: 0.95rem;
+}
+
+.sns-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.sns-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(168,85,247,0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-text-sub);
+  transition: all 0.3s ease;
+  font-family: var(--font-magic);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+.sns-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-lavender);
+  box-shadow: 0 0 20px var(--color-glow);
+  transform: translateY(-3px);
+}
+
+.sns-icon { font-size: 1.8rem; }
+
+.contact-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-round);
+  line-height: 1.8;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--color-border);
+  background: rgba(13,10,26,0.9);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+  font-family: var(--font-magic);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  nav { padding: 1rem; }
+  .nav-links { display: none; }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+    padding: 6rem 1.5rem 3rem;
+  }
+  .hero-btns { justify-content: center; }
+  .hero-magic-label { justify-content: center; }
+
+  .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .profile-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .profile-card { position: static; }
+  .magic-grid { grid-template-columns: 1fr; }
+  .music-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .goods-grid { grid-template-columns: 1fr; }
+  .sns-grid { grid-template-columns: repeat(2, 1fr); }
+  section { padding: 5rem 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="magic-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">紫月ミュウ</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#magic">Magic</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#goods">Goods</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-magic-label">VTuber · Magical Singer</div>
+      <h1 class="hero-name-ja">紫月ミュウ</h1>
+      <p class="hero-name-en">SHIZUKI MYU</p>
+      <p class="hero-catchcopy">
+        紫の月夜に、魔法の歌声を届けに来たよ✨<br>
+        夢と魔法を、あなたのもとへ！
+      </p>
+      <div class="hero-btns">
+        <a href="#about" class="btn-primary">✦ Meet Myu</a>
+        <a href="#music" class="btn-secondary">♪ Music</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-char">
+        <div class="magic-ring magic-ring-1"></div>
+        <div class="magic-ring magic-ring-2"></div>
+        <div class="hero-char-placeholder" style="background:transparent;border:none;overflow:visible;">
+          <img src="images/shizuki-myu.png" alt="紫月ミュウ" style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Introduction ✦</p>
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">紫月ミュウってどんな子？</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-inner">
+      <div class="about-magic-card animate-on-scroll">
+        <span class="about-icon">🌙</span>
+        <h3 class="about-title">魔法学校出身の歌い手</h3>
+        <p class="about-text">
+          遠い星の魔法学校から現れた、元気いっぱいの歌い手。<br>
+          紫色の魔法と歌声で、みんなの夢を応援するよ！<br>
+          難しい魔法は苦手だけど、歌の魔法だけは誰にも負けない！
+        </p>
+        <div class="about-tags">
+          <span class="about-tag">🎵 歌が得意</span>
+          <span class="about-tag">✨ 魔法使い</span>
+          <span class="about-tag">🌙 夜型</span>
+          <span class="about-tag">🍬 甘いもの好き</span>
+          <span class="about-tag">📚 勉強中</span>
+        </div>
+      </div>
+      <div class="about-magic-card animate-on-scroll">
+        <span class="about-icon">💜</span>
+        <h3 class="about-title">ミュウの好きなこと</h3>
+        <p class="about-text">
+          歌うこと・星空・甘いもの・みんなが大好き！<br>
+          配信では歌枠・雑談・ゲーム実況・ASMR・お絵描き配信などをしてるよ。<br>
+          「ミュウメイト」のみんなと一緒に、毎日楽しく過ごしてるよ✨
+        </p>
+        <div class="about-tags">
+          <span class="about-tag">🎤 歌枠</span>
+          <span class="about-tag">🎮 ゲーム実況</span>
+          <span class="about-tag">🌟 雑談</span>
+          <span class="about-tag">🎧 ASMR</span>
+          <span class="about-tag">🎨 お絵描き配信</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Character ✦</p>
+      <h2 class="section-title">Profile</h2>
+      <p class="section-sub">紫月ミュウの基本情報</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="profile-inner">
+      <div class="profile-card animate-on-scroll">
+        <div class="profile-name">紫月 ミュウ</div>
+        <div class="profile-name-en">SHIZUKI MYU</div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-label">Birthday</div>
+            <div class="stat-value">6月2日</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Height</div>
+            <div class="stat-value">155 cm</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Color</div>
+            <div class="stat-value">紫・ラベンダー</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Fan Name</div>
+            <div class="stat-value">ミュウメイト</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Specialty</div>
+            <div class="stat-value">歌の魔法</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">School</div>
+            <div class="stat-value">魔法学校</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-content">
+        <div class="animate-on-scroll">
+          <div class="profile-block-title">Self Introduction</div>
+          <p class="profile-text">
+            はじめまして！紫月ミュウだよ🌙<br>
+            魔法系VTuberとして活動中の永遠の17歳✨<br>
+            キミの心に、ミュウの魔法をかけちゃうよ〜☆<br>
+            一緒に魔法の時間を過ごそうね！よろしくね💜
+          </p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="profile-block-title">Personality</div>
+          <p class="profile-text">
+            元気いっぱいで明るい性格！失敗してもすぐ立ち直るよ💪<br>
+            みんなのことが大好きで、いつも全力で応援してる。<br>
+            ちょっとドジなところもあるけど、それもミュウの魅力かな？
+          </p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="profile-block-title">World</div>
+          <p class="profile-text">
+            紫の夜空に浮かぶ魔法学校——<br>
+            星の光と魔法陣が輝く幻想的な世界。<br>
+            そこで歌の魔法を磨き続けてきたミュウが<br>
+            みんなのもとに届けに来たよ🌙✨
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAGIC -->
+<section id="magic">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Skills ✦</p>
+      <h2 class="section-title">Magic</h2>
+      <p class="section-sub">ミュウが使える魔法一覧</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="magic-grid">
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">🎵</span>
+        <div class="magic-name">歌声魔法</div>
+        <p class="magic-desc">歌うことで周りの人の気持ちを明るくする魔法。ミュウの一番得意な魔法！</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span>
+        </div>
+      </div>
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">🌙</span>
+        <div class="magic-name">月光魔法</div>
+        <p class="magic-desc">紫の月明かりを操る魔法。夜の配信では特に力を発揮するよ！</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span style="color:var(--color-text-muted)">★</span>
+        </div>
+      </div>
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">✨</span>
+        <div class="magic-name">夢魔法</div>
+        <p class="magic-desc">みんなの夢を応援するエネルギーを送る魔法。毎日練習中！</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span style="color:var(--color-text-muted)">★</span><span style="color:var(--color-text-muted)">★</span>
+        </div>
+      </div>
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">💜</span>
+        <div class="magic-name">癒し魔法</div>
+        <p class="magic-desc">疲れた心を癒す魔法。声を届けるだけでほっこりするって言ってもらえるよ。</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span style="color:var(--color-text-muted)">★</span>
+        </div>
+      </div>
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">⭐</span>
+        <div class="magic-name">星降り魔法</div>
+        <p class="magic-desc">空から星を降らせる演出魔法。ライブの時に使うと綺麗なんだ！</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span class="level-star">★</span><span class="level-star">★</span><span style="color:var(--color-text-muted)">★</span><span style="color:var(--color-text-muted)">★</span>
+        </div>
+      </div>
+      <div class="magic-card animate-on-scroll">
+        <span class="magic-icon">🔮</span>
+        <div class="magic-name">予言魔法</div>
+        <p class="magic-desc">ちょっとだけ未来が見える魔法。でもほとんど外れるのは秘密…</p>
+        <div class="magic-level">
+          <span class="level-star">★</span><span style="color:var(--color-text-muted)">★</span><span style="color:var(--color-text-muted)">★</span><span style="color:var(--color-text-muted)">★</span><span style="color:var(--color-text-muted)">★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Discography ✦</p>
+      <h2 class="section-title">Music</h2>
+      <p class="section-sub">ミュウの魔法の歌声</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="music-grid">
+      <div class="music-card animate-on-scroll">
+        <div class="music-thumb">
+          <img src="images/music1.png" alt="Magic Party Night！" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="music-info">
+          <div class="music-title">Magic Party Night！</div>
+          <div class="music-genre">DEBUT SONG · DANCE × MAGIC</div>
+          <span class="music-tag">✦ 配信中</span>
+        </div>
+      </div>
+      <div class="music-card animate-on-scroll">
+        <div class="music-thumb">
+          <img src="images/music2.png" alt="星降るダンスフロア" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="music-info">
+          <div class="music-title">星降るダンスフロア</div>
+          <div class="music-genre">PARTY × FANTASY</div>
+          <span class="music-tag">✦ 配信中</span>
+        </div>
+      </div>
+      <div class="music-card animate-on-scroll">
+        <div class="music-thumb">
+          <img src="images/music3.png" alt="ふわふわMagic Night" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="music-info">
+          <div class="music-title">ふわふわMagic Night</div>
+          <div class="music-genre">DREAM × DANCE</div>
+          <span class="music-tag">準備中</span>
+        </div>
+      </div>
+      <div class="music-card animate-on-scroll">
+        <div class="music-thumb">
+          <img src="images/music4.png" alt="星くずのメロディ" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="music-info">
+          <div class="music-title">星くずのメロディ</div>
+          <div class="music-genre">BALLAD × MAGIC</div>
+          <span class="music-tag">準備中</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Illustrations ✦</p>
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-sub">ミュウのイラストギャラリー</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery1.png" alt="gallery1" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery2.png" alt="gallery2" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery3.png" alt="gallery3" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery4.png" alt="gallery4" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery5.png" alt="gallery5" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery6.png" alt="gallery6" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery7.png" alt="gallery7" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+      <div class="gallery-item animate-on-scroll"><img src="images/gallery8.png" alt="gallery8" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Live Schedule ✦</p>
+      <h2 class="section-title">Schedule</h2>
+      <p class="section-sub">配信スケジュール</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="schedule-inner">
+      <div class="schedule-item animate-on-scroll">
+        <div class="schedule-date">
+          <div class="schedule-month">MAY</div>
+          <div class="schedule-day">20</div>
+        </div>
+        <div class="schedule-info">
+          <div class="schedule-title">🎵 歌枠配信</div>
+          <div class="schedule-time">21:00 〜</div>
+          <span class="schedule-badge badge-live">LIVE</span>
+        </div>
+      </div>
+      <div class="schedule-item animate-on-scroll">
+        <div class="schedule-date">
+          <div class="schedule-month">MAY</div>
+          <div class="schedule-day">22</div>
+        </div>
+        <div class="schedule-info">
+          <div class="schedule-title">🎮 ゲーム配信</div>
+          <div class="schedule-time">20:00 〜</div>
+          <span class="schedule-badge badge-live">LIVE</span>
+        </div>
+      </div>
+      <div class="schedule-item animate-on-scroll">
+        <div class="schedule-date">
+          <div class="schedule-month">MAY</div>
+          <div class="schedule-day">25</div>
+        </div>
+        <div class="schedule-info">
+          <div class="schedule-title">💜 コラボ配信</div>
+          <div class="schedule-time">22:00 〜</div>
+          <span class="schedule-badge badge-collab">COLLAB</span>
+        </div>
+      </div>
+      <div class="schedule-item animate-on-scroll">
+        <div class="schedule-date">
+          <div class="schedule-month">JUN</div>
+          <div class="schedule-day">01</div>
+        </div>
+        <div class="schedule-info">
+          <div class="schedule-title">🎵 新曲リリース</div>
+          <div class="schedule-time">12:00</div>
+          <span class="schedule-badge badge-music">MUSIC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOODS -->
+<section id="goods">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Official Goods ✦</p>
+      <h2 class="section-title">Goods</h2>
+      <p class="section-sub">公式グッズ</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="goods-grid">
+      <div class="goods-card animate-on-scroll">
+        <div class="goods-thumb"><img src="images/goods1.png" alt="Tシャツ" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="goods-info">
+          <div class="goods-name">紫月ミュウ Tシャツ</div>
+          <div class="goods-price">¥3,800</div>
+          <a href="#" class="goods-btn">✦ 購入する</a>
+        </div>
+      </div>
+      <div class="goods-card animate-on-scroll">
+        <div class="goods-thumb"><img src="images/goods2.png" alt="アクリルスタンド" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="goods-info">
+          <div class="goods-name">アクリルスタンド</div>
+          <div class="goods-price">¥2,500</div>
+          <a href="#" class="goods-btn">✦ 購入する</a>
+        </div>
+      </div>
+      <div class="goods-card animate-on-scroll">
+        <div class="goods-thumb"><img src="images/goods3.png" alt="1st Mini Album" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="goods-info">
+          <div class="goods-name">1st Mini Album</div>
+          <div class="goods-price">準備中</div>
+          <a href="#" class="goods-btn">✦ 詳細を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <p class="section-label">✦ Follow Me ✦</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">SNS・お問い合わせ</p>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-inner">
+      <p class="contact-text animate-on-scroll">
+        ミュウのSNSをフォローしてね！<br>
+        配信の告知や日常のつぶやきを投稿してるよ✨<br>
+        お仕事のご依頼はメールかDMでお気軽にどうぞ🌙
+      </p>
+      <div class="sns-grid animate-on-scroll">
+        <a href="#" class="sns-btn">
+          <span class="sns-icon">🎥</span>
+          <span>YouTube</span>
+        </a>
+        <a href="#" class="sns-btn">
+          <span class="sns-icon">🐦</span>
+          <span>X / Twitter</span>
+        </a>
+        <a href="#" class="sns-btn">
+          <span class="sns-icon">📸</span>
+          <span>Instagram</span>
+        </a>
+        <a href="#" class="sns-btn">
+          <span class="sns-icon">🎵</span>
+          <span>TikTok</span>
+        </a>
+      </div>
+      <div class="about-tags animate-on-scroll" style="justify-content:center;margin-bottom:2rem;">
+        <span class="about-tag">#紫月ミュウ（総合）</span>
+        <span class="about-tag">#ミュウライブ（配信）</span>
+        <span class="about-tag">#ミュウアート（FA）</span>
+      </div>
+      <p class="contact-note animate-on-scroll">
+        お仕事のご依頼・コラボのご相談はSNSのDMまたは<br>
+        メールにてお気軽にご連絡ください。<br>
+        © 2026 Lupinus. All rights reserved.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">紫月ミュウ / Shizuki Myu</div>
+  <p class="footer-copy">© 2026 Lupinus · All rights reserved.</p>
+</footer>
+
+<script>
+// ========== MAGIC PARTICLE CANVAS ==========
+const canvas = document.getElementById('magic-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// 魔法陣パーティクル
+const particles = Array.from({ length: 80 }, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  size: Math.random() * 3 + 1,
+  speedX: (Math.random() - 0.5) * 0.5,
+  speedY: (Math.random() - 0.5) * 0.5,
+  opacity: Math.random() * 0.6 + 0.1,
+  type: Math.floor(Math.random() * 3), // 0:circle, 1:star, 2:diamond
+  color: ['rgba(168,85,247,', 'rgba(232,121,249,', 'rgba(245,158,11,', 'rgba(196,181,253,'][Math.floor(Math.random() * 4)],
+  pulse: Math.random() * Math.PI * 2,
+  pulseSpeed: Math.random() * 0.02 + 0.01
+}));
+
+function drawStar(x, y, size, opacity, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.beginPath();
+  for (let i = 0; i < 4; i++) {
+    const angle = (i * Math.PI) / 2;
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Math.cos(angle) * size * 2, Math.sin(angle) * size * 2);
+  }
+  ctx.strokeStyle = `${color}${opacity})`;
+  ctx.lineWidth = 0.8;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    p.x += p.speedX;
+    p.y += p.speedY;
+    p.pulse += p.pulseSpeed;
+    const pOpacity = p.opacity * (0.5 + 0.5 * Math.sin(p.pulse));
+
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    if (p.type === 0) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `${p.color}${pOpacity})`;
+      ctx.fill();
+    } else if (p.type === 1) {
+      drawStar(p.x, p.y, p.size, pOpacity, p.color);
+    } else {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = `${p.color}${pOpacity})`;
+      ctx.fillRect(-p.size, -p.size, p.size * 2, p.size * 2);
+      ctx.restore();
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ========== SCROLL ANIMATION ==========
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
