@@ -294,7 +294,7 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  mix-blend-mode: lighten;
+  border-radius: 4px;
   filter: drop-shadow(0 0 30px rgba(168,85,247,0.5));
 }
 
@@ -608,6 +608,7 @@ section {
   font-size: 3rem;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .music-thumb::after {
   content: '';
@@ -615,6 +616,78 @@ section {
   inset: 0;
   background: var(--gradient-accent);
   opacity: 0.1;
+}
+
+/* CDボタン */
+.cd-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+.music-thumb:hover .cd-btn {
+  opacity: 1;
+}
+.cd-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(168,85,247,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px rgba(168,85,247,0.6);
+  transition: transform 0.2s ease;
+}
+.cd-icon:hover {
+  transform: scale(1.1);
+}
+.cd-icon.playing {
+  background: rgba(236,72,153,0.9);
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(236,72,153,0.6); }
+  50% { box-shadow: 0 0 40px rgba(236,72,153,0.9); }
+}
+
+/* ミニプレイヤー */
+.mini-player {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(168,85,247,0.1);
+  border-top: 1px solid rgba(168,85,247,0.2);
+}
+.mini-player.active {
+  display: flex;
+}
+.mini-progress {
+  flex: 1;
+  height: 3px;
+  background: rgba(168,85,247,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.mini-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+.mini-time {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-magic);
+  white-space: nowrap;
 }
 
 .music-info {
@@ -1046,7 +1119,7 @@ footer {
         <div class="magic-ring magic-ring-1"></div>
         <div class="magic-ring magic-ring-2"></div>
         <div class="hero-char-placeholder" style="background:transparent;border:none;overflow:visible;">
-          <img src="images/shizuki-myu.png" alt="紫月ミュウ" style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+          <img src="images/shizuki-myu.png" alt="紫月ミュウ" style="width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:lighten;border-radius:4px;">
         </div>
       </div>
     </div>
@@ -1244,44 +1317,76 @@ footer {
     </div>
     <div class="music-grid">
       <div class="music-card animate-on-scroll">
-        <div class="music-thumb">
+        <div class="music-thumb" onclick="togglePlay('audio1', this)">
           <img src="images/music1.png" alt="Magic Party Night！" style="width:100%;height:100%;object-fit:cover;">
+          <div class="cd-btn"><div class="cd-icon" id="icon1">▶</div></div>
+        </div>
+        <div class="mini-player" id="player1">
+          <div class="mini-progress" onclick="seekAudio(event, 'audio1')">
+            <div class="mini-progress-bar" id="bar1"></div>
+          </div>
+          <span class="mini-time" id="time1">0:00</span>
         </div>
         <div class="music-info">
           <div class="music-title">Magic Party Night！</div>
           <div class="music-genre">DEBUT SONG · DANCE × MAGIC</div>
           <span class="music-tag">✦ 配信中</span>
         </div>
+        <audio id="audio1" src="audio/Magic_Party_Night_.mp3"></audio>
       </div>
       <div class="music-card animate-on-scroll">
-        <div class="music-thumb">
+        <div class="music-thumb" onclick="togglePlay('audio2', this)">
           <img src="images/music2.png" alt="星降るダンスフロア" style="width:100%;height:100%;object-fit:cover;">
+          <div class="cd-btn"><div class="cd-icon" id="icon2">▶</div></div>
+        </div>
+        <div class="mini-player" id="player2">
+          <div class="mini-progress" onclick="seekAudio(event, 'audio2')">
+            <div class="mini-progress-bar" id="bar2"></div>
+          </div>
+          <span class="mini-time" id="time2">0:00</span>
         </div>
         <div class="music-info">
           <div class="music-title">星降るダンスフロア</div>
           <div class="music-genre">PARTY × FANTASY</div>
           <span class="music-tag">✦ 配信中</span>
         </div>
+        <audio id="audio2" src="audio/星降るダンスフロア.mp3"></audio>
       </div>
       <div class="music-card animate-on-scroll">
-        <div class="music-thumb">
+        <div class="music-thumb" onclick="togglePlay('audio3', this)">
           <img src="images/music3.png" alt="ふわふわMagic Night" style="width:100%;height:100%;object-fit:cover;">
+          <div class="cd-btn"><div class="cd-icon" id="icon3">▶</div></div>
+        </div>
+        <div class="mini-player" id="player3">
+          <div class="mini-progress" onclick="seekAudio(event, 'audio3')">
+            <div class="mini-progress-bar" id="bar3"></div>
+          </div>
+          <span class="mini-time" id="time3">0:00</span>
         </div>
         <div class="music-info">
           <div class="music-title">ふわふわMagic Night</div>
           <div class="music-genre">DREAM × DANCE</div>
-          <span class="music-tag">準備中</span>
+          <span class="music-tag">✦ 配信中</span>
         </div>
+        <audio id="audio3" src="audio/ふわふわMagic_Night.mp3"></audio>
       </div>
       <div class="music-card animate-on-scroll">
-        <div class="music-thumb">
+        <div class="music-thumb" onclick="togglePlay('audio4', this)">
           <img src="images/music4.png" alt="星くずのメロディ" style="width:100%;height:100%;object-fit:cover;">
+          <div class="cd-btn"><div class="cd-icon" id="icon4">▶</div></div>
+        </div>
+        <div class="mini-player" id="player4">
+          <div class="mini-progress" onclick="seekAudio(event, 'audio4')">
+            <div class="mini-progress-bar" id="bar4"></div>
+          </div>
+          <span class="mini-time" id="time4">0:00</span>
         </div>
         <div class="music-info">
           <div class="music-title">星くずのメロディ</div>
           <div class="music-genre">BALLAD × MAGIC</div>
-          <span class="music-tag">準備中</span>
+          <span class="music-tag">✦ 配信中</span>
         </div>
+        <audio id="audio4" src="audio/星くずのメロディー.mp3"></audio>
       </div>
     </div>
   </div>
@@ -1545,6 +1650,74 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+</script>
+
+<script>
+// 音楽プレイヤー
+let currentAudio = null;
+let currentIcon = null;
+let currentNum = null;
+let progressInterval = null;
+
+function togglePlay(audioId, thumbEl) {
+  const num = audioId.replace('audio', '');
+  const audio = document.getElementById(audioId);
+  const icon = document.getElementById('icon' + num);
+  const player = document.getElementById('player' + num);
+
+  // 別の曲が再生中なら止める
+  if (currentAudio && currentAudio !== audio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentIcon.textContent = '▶';
+    currentIcon.classList.remove('playing');
+    document.getElementById('player' + currentNum).classList.remove('active');
+    document.getElementById('bar' + currentNum).style.width = '0%';
+    clearInterval(progressInterval);
+  }
+
+  if (audio.paused) {
+    audio.play();
+    icon.textContent = '⏸';
+    icon.classList.add('playing');
+    player.classList.add('active');
+    currentAudio = audio;
+    currentIcon = icon;
+    currentNum = num;
+
+    progressInterval = setInterval(() => {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      document.getElementById('bar' + num).style.width = pct + '%';
+      const m = Math.floor(audio.currentTime / 60);
+      const s = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+      document.getElementById('time' + num).textContent = m + ':' + s;
+    }, 200);
+
+    audio.onended = () => {
+      icon.textContent = '▶';
+      icon.classList.remove('playing');
+      player.classList.remove('active');
+      document.getElementById('bar' + num).style.width = '0%';
+      document.getElementById('time' + num).textContent = '0:00';
+      clearInterval(progressInterval);
+    };
+  } else {
+    audio.pause();
+    icon.textContent = '▶';
+    icon.classList.remove('playing');
+    clearInterval(progressInterval);
+  }
+}
+
+function seekAudio(e, audioId) {
+  e.stopPropagation();
+  const audio = document.getElementById(audioId);
+  const bar = e.currentTarget;
+  const rect = bar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * audio.duration;
+}
 </script>
 </body>
 </html>
